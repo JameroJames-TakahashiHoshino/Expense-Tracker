@@ -17,6 +17,10 @@ const CustomPieChart =  ({
     colors,
     showTextAnchor,
 }) => {
+    // Use CSS variable so color updates immediately when theme variables change
+    const labelFill = 'var(--text)';
+    const amountFill = 'var(--text)';
+
     return <ResponsiveContainer width="100%" height={380}>
         <PieChart>
             <Pie
@@ -43,7 +47,7 @@ const CustomPieChart =  ({
                         y="50%"
                         dy={-25}
                         textAnchor="middle"
-                        fill="#666"
+                        fill={labelFill}
                         fontSize="14px"
                     >
                         {label}
@@ -53,9 +57,9 @@ const CustomPieChart =  ({
                         y="50%"
                         dy={8}
                         textAnchor="middle"
-                        fill="#333"
+                        fill={amountFill}
                         fontSize="24px"
-                        fontWeight="semi-bold"
+                        fontWeight={600}
                     >
                         {totalAmount}
                     </text>

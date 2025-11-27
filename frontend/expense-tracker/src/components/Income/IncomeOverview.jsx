@@ -16,7 +16,7 @@ const IncomeOverview = ({transactions, onAddIncome}) => {
         <div className="flex items-center justify-between">
             <div className="">
                 <h5 className="text-lg">Income Overview</h5>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
                     Track your earnings over time and analyze your income trends.
                 </p>
             </div>
@@ -27,7 +27,7 @@ const IncomeOverview = ({transactions, onAddIncome}) => {
                 </button>
             </div>
 
-            <div className="mt-4 text-sm text-gray-600"></div>
+            <div className="mt-4 text-sm" style={{ color: 'var(--muted)' }}></div>
             <div className="mt-10">
                 <CustomBarChart data={chartData} xDataKey="month" />
             </div>

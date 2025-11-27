@@ -13,14 +13,18 @@
   }
 
   body{
-    background-color: #fcfbfc;
+    background-color: var(--bg-default, #fcfbfc);
     overflow-x: hidden;
+    color: var(--text, #0f1724);
   }
 }
 
 .input-box{
   @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100 rounded px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none;
 }
+
+.input-box input{ color: var(--text); }
+.input-box input::placeholder{ color: var(--muted); }
 
 .btn-primary {
   @apply w-full text-sm font-medium text-white bg-violet-500 shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-purple-600/15 hover:text-purple-600;
@@ -41,4 +45,71 @@
 .add-btn-fill {
   @apply text-white bg-primary
 }
+
+
+/* Theme variables ------------------------------------------------- */
+/* Light (default) */
+:root{
+  --bg-default: #fcfbfc;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --border: rgba(15,23,42,0.06);
+  --hover-bg: rgba(15,23,42,0.04);
+}
+
+/* Dark overrides when `.dark` is applied to the document root */
+.dark{
+  --bg-default: #0b1220;
+  --surface: #0f1724;
+  --card: #0f1724;
+  --muted: #9aa6b2;
+  --text: #e6eef8;
+  --border: rgba(148,163,184,0.06);
+  --hover-bg: rgba(255,255,255,0.02);
+}
+
+/* Transaction row helpers */
+.transaction-row{ background-color: transparent; }
+.transaction-row:hover{ background-color: var(--hover-bg); }
+
+.transaction-icon{ background-color: var(--surface); color: var(--text); }
+
+.text-muted{ color: var(--muted); }
+.text-body{ color: var(--text); }
+
+.dark .card{
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
+}
+
+.dark .btn-primary{
+  @apply bg-violet-600;
+}
+
+.dark .input-box{
+  background-color: #0b1220 !important;
+  color: var(--text) !important;
+  border-color: rgba(148,163,184,0.06) !important;
+}
+
+/* Override common utility classes emitted by Tailwind used across components */
+.dark .bg-white{ background-color: var(--surface) !important; }
+.dark .text-black{ color: var(--text) !important; }
+.dark .text-gray-700{ color: var(--muted) !important; }
+.dark .text-gray-950{ color: var(--text) !important; }
+.dark .bg-gray-50{ background-color: transparent !important; }
+.dark .border-gray-200\/50{ border-color: var(--border) !important; }
+.dark .shadow-gray-100{ box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important; }
+.dark .bg-purple-50{ background-color: rgba(139,92,246,0.06) !important; }
+.dark .bg-slate-100{ background-color: rgba(255,255,255,0.02) !important; }
+.dark .bg-slate-400{ background-color: rgba(148,163,184,0.12) !important; }
+
+/* Emoji picker / small popups */
+.dark .bg-white.border{ border-color: var(--border) !important; }
+
+
+
 

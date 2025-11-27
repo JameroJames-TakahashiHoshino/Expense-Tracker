@@ -7,8 +7,8 @@ const InfoCard = ({ icon, label, value, color }) => {
                 {icon}
             </div>
             <div>
-                <h6 className="text-sm text-gray-500 mb-1">{label}</h6>
-                <span className="text-[22px]">${value}</span>
+                <h6 className="text-sm mb-1" style={{ color: 'var(--muted)' }}>{label}</h6>
+                    <span className="text-[22px] text-body">${value}</span>
             </div>
         </div>
     );
