@@ -74,7 +74,7 @@ const Income = () => {
       });
 
       setOpenAddIncomeModal(false);
-      toast.success("Income added successfully");
+      toast.success("Income/Allowance added successfully");
       fetchIncomeDetails();
     } catch (error) {
       console.error(
@@ -90,7 +90,7 @@ const Income = () => {
       await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id))
 
       setOpenDeleteAlert({ show: false, data: null });
-      toast.success("Income details deleted successfully");
+      toast.success("Income/Allowance details deleted successfully");
       fetchIncomeDetails();
     } catch (error) {
       console.error(
@@ -131,8 +131,8 @@ const Income = () => {
     return () => {}
   }, []);
 
-  return(
-     <DashboardLayout activeMenu="Income">
+    return(
+      <DashboardLayout activeMenu="Income/Allowance">
       <div className="my-5 mx-auto">
         <div className="grid grid-cols-1 gap-6">
           <div className="">
@@ -154,7 +154,7 @@ const Income = () => {
         <Modal
           isOpen={openAddIncomeModal}
           onClose={() => setOpenAddIncomeModal(false)}
-          title="Add Income"
+          title="Add Income/Allowance"
         >
           <AddIncomeForm onAddIncome={handleAddIncome} />
         </Modal>
@@ -162,10 +162,10 @@ const Income = () => {
         <Modal
             isOpen={openDeleteAlert.show}
             onClose={() => setOpenDeleteAlert({ show: false, data: null })}
-            title="Delete Income"
+            title="Delete Income/Allowance"
         >
           <DeleteAlert
-            content="Are you sure you want to delete this income detail?"
+            content="Are you sure you want to delete this income/allowance detail?"
             onDelete={() => deleteIncome(openDeleteAlert.data)}
           />
         </Modal>

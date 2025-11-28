@@ -15,15 +15,15 @@ const IncomeOverview = ({transactions, onAddIncome}) => {
   return <div className="card">
         <div className="flex items-center justify-between">
             <div className="">
-                <h5 className="text-lg">Income Overview</h5>
+                <h5 className="text-lg">Income/Allowance Overview</h5>
                 <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
-                    Track your earnings over time and analyze your income trends.
+                    Track your earnings and allowances over time and analyze your trends.
                 </p>
             </div>
 
                 <button className="add-btn" onClick ={onAddIncome}>
                     <LuPlus className="text-lg" />
-                    Add Income
+                    Add Income/Allowance
                 </button>
             </div>
 

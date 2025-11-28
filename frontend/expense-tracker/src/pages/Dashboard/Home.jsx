@@ -64,7 +64,7 @@ const Home = () => {
 
          <InfoCard
           icon={<LuWalletMinimal />}
-          label="Total Income"
+          label="Total Income/Allowance"
           value={addThousandsSeparator(dashboardData?.totalIncome || 0)}
           color="bg-orange-500"
         />

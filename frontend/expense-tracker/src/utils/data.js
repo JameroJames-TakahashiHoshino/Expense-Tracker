@@ -15,7 +15,7 @@ export const SIDE_MENU_DATA = [
     },
     {
         id: "02",
-        label: "Income",
+        label: "Income/Allowance",
         icon: LuWalletMinimal,
         path: "/income",
     },
