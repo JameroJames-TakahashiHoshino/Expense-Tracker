@@ -1,5 +1,5 @@
 import React from "react";
-import CARD_2 from "../../assets/images/card2.jpg";
+import CARD_2 from "../../assets/images/NEU PIC.jpg";
 import { LuTrendingUpDown } from "react-icons/lu";
 
 const AuthLayout = ({ children }) => {
@@ -17,8 +17,8 @@ const AuthLayout = ({ children }) => {
         <div className="grid grid-cols-1 z-20">
     <StatsInfoCard
         icon={<LuTrendingUpDown />}
-        label="Track Your Income & Expenses"
-        value="430,000"
+        label="Visual Representation of your Expense and Income"
+        value="000,000"
         color="bg-primary"
     />
 </div>

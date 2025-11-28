@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require("jsonwebtoken");
+const { validationResult } = require('express-validator');
 
 // Generate JWT token
 const generateToken = (id) => {
@@ -10,9 +11,10 @@ const generateToken = (id) => {
 exports.registerUser = async (req, res) => {
     const { fullName, email, password, profileImageUrl } = req.body;
 
-    // Validation: Check for missing fields
-    if (!fullName || !email || !password){
-        return res.status(400).json({ message: "All fields are required "});
+    // Express-validator check
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ message: errors.array()[0].msg });
     }
 
     try {
@@ -46,9 +48,10 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
-    // Check for missing fields
-    if (!email || !password) {
-        return res.status(400).json({ message: "All fields are required" });
+    // Express-validator check
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ message: errors.array()[0].msg });
     }
 
     try {

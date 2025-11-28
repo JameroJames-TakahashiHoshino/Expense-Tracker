@@ -19,7 +19,7 @@ const AddExpenseForm = ({ onAddExpense }) => {
          onSelect={(selectedIcon) => handleChange("icon", selectedIcon)}
     />
     
-    <Input
+        <Input
         value={expense.category}
         onChange={({ target }) => handleChange("category", target.value)}
         label="Category"

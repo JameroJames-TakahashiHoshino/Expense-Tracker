@@ -42,6 +42,12 @@ const SignUp = () => {
       return;
     }
 
+    // Enforce minimum password length on client-side
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+
     setError("");
 
     //SignUp API Call

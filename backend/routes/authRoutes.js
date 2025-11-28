@@ -1,4 +1,5 @@
 const express = require("express");
+const { check } = require("express-validator");
 const { protect } = require("../middleware/authMiddleware");
 
 const {
@@ -10,8 +11,30 @@ const upload = require("../middleware/uploadMiddleware");
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+router.post(
+    "/register",
+    [
+        check("fullName").notEmpty().withMessage("Full name is required"),
+        check("email").isEmail().withMessage("Valid email is required"),
+        check("password")
+            .isLength({ min: 8 })
+            .withMessage("Password must be at least 8 characters long")
+            .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)
+            .withMessage(
+                "Password must include uppercase, lowercase and a number"
+            ),
+    ],
+    registerUser
+);
+
+router.post(
+    "/login",
+    [
+        check("email").isEmail().withMessage("Valid email is required"),
+        check("password").notEmpty().withMessage("Password is required"),
+    ],
+    loginUser
+);
 router.get("/getUser", protect, getUserInfo);
 
 router.post("/upload-image", upload.single("image"), (req, res) => {
