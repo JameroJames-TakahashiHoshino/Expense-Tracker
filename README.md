@@ -133,6 +133,12 @@ Build Command: npm run build
 Output Directory: dist
 ```
 
+Set this Vercel environment variable:
+
+```env
+VITE_API_URL=https://your-backend.onrender.com
+```
+
 Render settings:
 
 ```text
@@ -141,7 +147,7 @@ Build Command: npm install
 Start Command: npm start
 ```
 
-Before deploying, update the frontend API base URL in `frontend/expense-tracker/src/utils/apiPaths.js` from the local backend URL to the deployed backend URL. Set `MONGO_URI`, `JWT_SECRET`, and `CLIENT_URL` as environment variables in Render.
+Set `MONGO_URI`, `JWT_SECRET`, and `CLIENT_URL` as environment variables in Render. Set `CLIENT_URL` to the final Vercel URL. The frontend keeps using `http://localhost:8000` locally when `VITE_API_URL` is not set.
 
 Uploaded images currently use the backend's local `uploads` directory. Local disk storage is temporary on many cloud hosts, so production deployments should use persistent storage such as Cloudinary or Amazon S3.
 
