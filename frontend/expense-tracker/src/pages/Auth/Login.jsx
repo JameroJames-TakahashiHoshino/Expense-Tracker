@@ -6,12 +6,14 @@ import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
+import TransitionOverlay from "../../components/TransitionOverlay";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { updateUser } = useContext(UserContext);
 
@@ -35,6 +37,7 @@ const Login = () => {
 
     //Login API Call
     try {
+      setIsSubmitting(true);
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
         password,
@@ -44,9 +47,10 @@ const Login = () => {
       if (token) {
         localStorage.setItem("token", token);
         updateUser(user);
-        navigate("/dashboard");
+        setTimeout(() => navigate("/dashboard"), 900);
       }
     } catch (error) {
+      setIsSubmitting(false);
       if (error.response && error.response.data.message) {
         setError(error.response.data.message)
       } else {
@@ -58,6 +62,7 @@ const Login = () => {
 
   return(
     <AuthLayout>
+      {isSubmitting && <TransitionOverlay message="Welcome to your dashboard" />}
       <div className="lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center">
         <h3 className="text-xl font-semibold text-black">Welcome Back</h3>
         <p className="text-xs text-slate-700 mt-[5px] mb-6">
@@ -84,13 +89,13 @@ const Login = () => {
 
           {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-          <button type="submit" className="btn-primary">
-            LOGIN
+          <button type="submit" className="btn-primary" disabled={isSubmitting}>
+            {isSubmitting ? "PLEASE WAIT..." : "LOGIN"}
           </button>
 
           <p className="text-[13px] text-slate-800 mt-3">
             Don't have an account ? {" "}
-            <Link className="font-medium text-primary underline" to="/signUp">
+            <Link className="auth-link clickable font-medium text-primary underline" to="/signUp">
               SignUp
             </Link>
           </p>

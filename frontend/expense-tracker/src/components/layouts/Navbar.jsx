@@ -14,7 +14,7 @@ const Navbar = ({activeMenu}) => {
   return(
     <div className="flex gap-5 bg-white border boredr-b border-gray-200/50 backdrop-blur-[2px] py-4 px-7 sticky top-0 z-30">
         <button
-            className="block lg:hidden text-black"
+            className="clickable block lg:hidden text-black"
             onClick={() => {
                 setOpenSideMenu(!openSideMenu);
             }}
@@ -31,7 +31,7 @@ const Navbar = ({activeMenu}) => {
         <div className="ml-auto flex items-center gap-3">
             <button
                 aria-label="Toggle theme"
-                className="p-2 rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-white/5"
+                className="clickable p-2 rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-white/5"
                 onClick={() => {
                     const next = toggleTheme();
                     setTheme(next);

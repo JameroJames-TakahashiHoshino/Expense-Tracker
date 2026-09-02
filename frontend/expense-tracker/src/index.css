@@ -31,11 +31,141 @@
 .btn-primary {
   @apply w-full text-sm font-medium text-white shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1;
   background-color: var(--color-primary);
-  transition: background-color .12s ease, transform .08s ease;
+  cursor: pointer;
+  transition: background-color .12s ease, transform .08s ease, box-shadow .12s ease, filter .12s ease;
 }
 
 .btn-primary:hover{
   filter:brightness(.96);
+  box-shadow: 0 8px 18px rgba(111, 73, 233, .18);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.menu-item:active,
+.clickable:active{
+  transform: translateY(1px) scale(.98);
+}
+
+.btn-primary:focus-visible,
+.menu-item:focus-visible,
+.clickable:focus-visible{
+  outline: 3px solid rgba(135, 92, 245, .28);
+  outline-offset: 3px;
+}
+
+.menu-item{
+  cursor: pointer;
+  color: var(--text);
+  transition: background-color .16s ease, color .16s ease, transform .08s ease, box-shadow .16s ease;
+}
+
+.menu-item:hover{
+  color: var(--color-primary);
+  background-color: var(--color-accent-2);
+  transform: translateX(3px);
+  box-shadow: 0 6px 14px rgba(111, 73, 233, .08);
+}
+
+.menu-item.active:hover{
+  color: white;
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+}
+
+.clickable{
+  cursor: pointer;
+  transition: color .15s ease, background-color .15s ease, transform .08s ease;
+}
+
+.clickable:hover{
+  transform: translateY(-1px);
+}
+
+.auth-link:hover{
+  text-decoration-thickness: 2px;
+}
+
+.transition-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 36, .28);
+  backdrop-filter: blur(7px);
+  animation: transition-fade-in .2s ease-out both;
+}
+
+.transition-panel{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  color: #fff;
+  background: var(--color-primary);
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(15, 23, 36, .22);
+  animation: transition-rise-in .3s ease-out both;
+}
+
+.transition-panel p{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.transition-pulse{
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: transition-spin .7s linear infinite;
+}
+
+.transition-dots{
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.transition-dots span{
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #fff;
+  animation: transition-bounce .8s ease-in-out infinite;
+}
+
+.transition-dots span:nth-child(2){ animation-delay: .12s; }
+.transition-dots span:nth-child(3){ animation-delay: .24s; }
+
+@keyframes transition-fade-in{
+  from{ opacity: 0; }
+  to{ opacity: 1; }
+}
+
+@keyframes transition-rise-in{
+  from{ opacity: 0; transform: translateY(10px) scale(.97); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes transition-spin{
+  to{ transform: rotate(360deg); }
+}
+
+@keyframes transition-bounce{
+  0%, 100%{ opacity: .4; transform: translateY(0); }
+  50%{ opacity: 1; transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .transition-overlay,
+  .transition-panel,
+  .transition-pulse,
+  .transition-dots span{
+    animation: none;
+  }
 }
 
 .card {
